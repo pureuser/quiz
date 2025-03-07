@@ -45,7 +45,7 @@ const ProduceSorter = () => {
         }
 
         // Set 5-second timer to move back
-        const timerId = setTimeout(() => {
+        const timerId = window.setTimeout(() => {
             if (item.type === 'Fruit') {
                 setFruits((prevFruits) =>
                     prevFruits.filter((fruit) => fruit.name !== item.name)
@@ -65,7 +65,7 @@ const ProduceSorter = () => {
     const moveBackToMain = (item: ITEM, category: ProduceType) => {
         // Clear the timer
         if (timerIds[item.name]) {
-            clearTimeout(timerIds[item.name])
+            window.clearTimeout(timerIds[item.name])
 
             // Remove timer id from state
             const newTimerIds = { ...timerIds }
@@ -91,7 +91,7 @@ const ProduceSorter = () => {
     // Cleanup timers on unmount
     useEffect(() => {
         return () => {
-            Object.values(timerIds).forEach((id) => clearTimeout(id))
+            Object.values(timerIds).forEach((id) => window.clearTimeout(id))
         }
     }, [timerIds])
 
